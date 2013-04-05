@@ -29,10 +29,6 @@ public class SineWave extends JPanel{
         } 
     }
 
-    public SineWave copy() {
-       return new SineWave(wavelength, amplitude, phase);
-    }
-
     public void draw(Graphics g, int x, int y, int length) 
     {   for (int i=1; i<=length; i++)
         {  Point p1 = new Point(x+i, y+getY(i));
