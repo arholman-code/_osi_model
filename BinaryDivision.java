@@ -4,89 +4,70 @@
  */
 package _osi_;
 
-/**
- *
- * @author arholman
- */
-public class BinaryDivision {
 
+public class BinDiv {
+    String rem;
 
-    String substracted;
+    public BinDiv(){}
 
-    public BinaryDivision(){
+    public String getRem(String divid, String divis){
 
-    }
+        int dividL = divid.length();
+        int divisL = divis.length();
 
-    public String getRemainder(String dividend, String divisor){
+        String quot="";
+        String examP="";
+        String divisP="";
+        rem="";
 
-        int dividendLength = dividend.length();
-        int divisorLength = divisor.length();
+        int ind;
+        int subZ =0;
 
-        String quotient="";
-        String examinedP="";
-        String divisorP="";
-        substracted="";
-
-        int indexNumber;
-        int substractZeros=0;
-
-
-        for (int i=0;i<divisorLength;i++){
-            examinedP = examinedP + dividend.charAt(i);
+        for (int i=0;i<divisLength;i++){
+            examP = examP + divid.charAt(i);
         }
 
-
-        indexNumber = divisorLength;
-
-        for (int j=0;j<(dividendLength-divisorLength);j++){
-
-            //START
-            if ( Integer.parseInt(String.valueOf(examinedP.charAt(0)))==1){
-                quotient=quotient + "1";
-                int a = divisor.length();
+        indNum = divisLength;
+        for (int j=0;j<(dividL-divisL);j++){
+            if ( Integer.parseInt(String.valueOf(examP.charAt(0)))==1){
+                quot=quot + "1";
+                int a = divis.length();
                 
                 for (int i = 0;i<a;i++){
-                    substracted = substracted +
-                            CRC_substract(Integer.parseInt(String.valueOf(examinedP.charAt(i))),
-                                    Integer.parseInt(String.valueOf(divisor.charAt(i))));
+                    rem = rem +
+                            XOR(Integer.parseInt(String.valueOf(examP.charAt(i))),
+                                    Integer.parseInt(String.valueOf(divis.charAt(i))));
                 }
-                substracted = substracted.substring(1);
-                substracted = substracted + dividend.charAt(indexNumber);
+                rem = rem.substring(1);
+                rem = rem + divid.charAt(indNum);
 
             }
             else {
-                quotient=quotient + "0";
-                int a = divisor.length();
-                
+                quott=quot + "0";
+                int a = divis.length();
                 for (int i = 0;i<a;i++){
-                    substracted = substracted +
-                            CRC_substract(Integer.parseInt(String.valueOf(examinedP.charAt(i))),
-                                    0);
+                    rem = rem +
+                            XOR(Integer.parseInt(String.valueOf(examinedP.charAt(i))),0);
                 }
-                substracted = substracted.substring(1);
-                substracted = substracted + dividend.charAt(indexNumber);
+                rem = rem.substring(1);
+                rem = rem + divid.charAt(indNum);
             }
-
-            examinedP = substracted;
-            substracted="";
-            indexNumber++;
+            examP = rem;
+            rem="";
+            indNum++;
         }
-        for (int i = 0;i<examinedP.length();i++){
-            if (Integer.parseInt(String.valueOf(examinedP.charAt(i)))==0){
-                substractZeros++;
+        for (int i = 0;i<examP.length();i++){
+            if (Integer.parseInt(String.valueOf(examP.charAt(i)))==0){
+                subZ++;
             }
             else{
                 break;
             }
         }
-
-        return examinedP;
-
+        return examP;
     }
 
-    //XOR - Exclusive OR
-    public int CRC_substract(int a, int b){
-
+    public int XOR(int a, int b){
         if (a==0 && b==0){
             return 0;
         }
@@ -101,5 +82,4 @@ public class BinaryDivision {
         }
         return -1;
     }
-
 }
